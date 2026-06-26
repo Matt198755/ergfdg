@@ -9,52 +9,58 @@
     box-sizing: border-box;
 }
 
+/* Root variables – easy to tweak */
+:root {
+    --bg-color: #0b0c10;
+    --accent: #66fcf1;
+    --text-primary: #c5c6c7;
+    --text-light: #fff;
+    --nav-height: 60px;
+    --max-width: 1100px;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Body & background (particle canvas sits behind everything)         */
+/* ------------------------------------------------------------------ */
 html, body {
     height: 100%;
     font-family: 'Roboto Mono', monospace;
-    color: #e0e0e0;
-    background: #0a0b10;          /* dark, space‑like */
-    overflow: hidden;            /* hide scrollbars caused by canvas */
+    background: var(--bg-color);
+    color: var(--text-primary);
+    overflow-x: hidden;
 }
 
-/* ------------------------------------------------------------------
-   Particle canvas (covers whole viewport)
-   ------------------------------------------------------------------ */
+/* Canvas covers the whole viewport */
 #particle-canvas {
     position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 0;
 }
 
-/* ------------------------------------------------------------------
-   Navigation bar (sticky, translucent)
-   ------------------------------------------------------------------ */
-.nav-header {
+/* ------------------------------------------------------------------ */
+/*  Navigation bar (sticky)                                            */
+/* ------------------------------------------------------------------ */
+.navbar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    z-index: 2;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(6px);
-}
-
-.nav {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0.8rem 1.2rem;
+    right: 0;
+    height: var(--nav-height);
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    background: rgba(11, 12, 16, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2;
 }
 
 .logo {
     font-size: 1.4rem;
     font-weight: 700;
-    color: #fff;
-    text-decoration: none;
+    color: var(--accent);
 }
 
 .nav-links {
@@ -64,114 +70,126 @@ html, body {
 }
 
 .nav-links a {
-    color: #ccc;
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.2s;
+    transition: color .2s;
 }
 
 .nav-links a:hover {
-    color: #fff;
+    color: var(--accent);
 }
 
-/* ------------------------------------------------------------------
-   Hero section (only on home page)
-   ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/*  Hero / Content sections                                            */
+/* ------------------------------------------------------------------ */
 .hero {
-    position: relative;
-    z-index: 2;               /* above particle canvas */
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding-top: 4rem;        /* account for fixed nav */
+    padding-top: var(--nav-height); /* avoid nav overlap */
+    z-index: 1;
 }
 
+/* Type‑writer heading */
 .hero h1 {
     font-size: 4rem;
+    color: var(--accent);
     margin-bottom: 0.5rem;
-    border-right: .12em solid #fff;
+    border-right: .15em solid var(--accent);
     white-space: nowrap;
     overflow: hidden;
 }
 
+/* Sub‑title */
 .subtitle {
     font-size: 1.2rem;
-    color: #bbb;
+    color: var(--text-primary);
 }
 
-/* ------------------------------------------------------------------
-   Generic content sections (About & Chain pages)
-   ------------------------------------------------------------------ */
-.content-section {
-    position: relative;
-    z-index: 2;
-    max-width: 960px;
-    margin: 6rem auto 2rem;
-    padding: 0 1.2rem;
+/* Generic page content (About & Chain) */
+.content {
+    max-width: var(--max-width);
+    margin: 120px auto 60px;
+    padding: 0 1.5rem;
     line-height: 1.6;
+    z-index: 1;
 }
 
-.content-section h2 {
-    font-size: 2.4rem;
-    margin-bottom: 0.8rem;
-    color: #fff;
-    text-align: center;
+/* Headings inside content */
+.content h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: var(--accent);
 }
 
-/* Feature list styling */
+.content h2 {
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: .5rem;
+    color: var(--accent);
+}
+
+/* Feature list */
 .feature-list {
-    margin: 1rem 0 1.5rem 1.5rem;
-}
-
-.feature-list li {
-    margin-bottom: 0.5rem;
+    list-style: disc inside;
+    margin: 1rem 0;
+    padding-left: 0.5rem;
 }
 
 /* Discord button */
 .discord-btn {
-    display: inline-block;
-    padding: 0.8rem 1.4rem;
-    background: #5865F2;
-    color: #fff;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .6rem 1.2rem;
     margin: 1rem 0;
-    transition: background 0.2s;
+    font-weight: 600;
+    background: #5865F2;
+    color: var(--text-light);
+    border-radius: .4rem;
+    text-decoration: none;
+    transition: background .2s;
 }
+
 .discord-btn:hover {
     background: #4752c4;
 }
 
+.discord-icon {
+    width: 20px;
+    height: 20px;
+}
+
 /* Chain of Command specific styling */
 .chain-section {
-    margin: 2rem 0;
+    margin-top: 1.5rem;
     padding-left: 1rem;
-    border-left: 3px solid #333;
+    border-left: 3px solid var(--accent);
 }
 
-.chain-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.4rem;
-    color: #ffcc66;
+.chain-section p {
+    margin: .5rem 0;
 }
 
-/* Links to Discord users – they open in a new tab */
+/* Links to Discord users – keep them readable */
 .chain-section a {
-    color: #66b3ff;
+    color: var(--accent);
     text-decoration: none;
 }
 .chain-section a:hover {
     text-decoration: underline;
 }
 
-/* ------------------------------------------------------------------
-   Responsive tweaks
-   ------------------------------------------------------------------ */
+/* ------------------------------------------------------------------ */
+/*  Responsive tweaks                                                   */
+/* ------------------------------------------------------------------ */
 @media (max-width: 768px) {
     .hero h1 { font-size: 2.8rem; }
     .subtitle { font-size: 1rem; }
+    .nav-links { gap: 1rem; }
+    .content { margin-top: 80px; }
 }
