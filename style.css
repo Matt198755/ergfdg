@@ -1,0 +1,181 @@
+/* --------------------------------------------------------------
+   Global resets & CSS variables
+   -------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Theme colours – tweak to your liking */
+:root {
+    --color-bg: #0e0e1d;
+    --color-primary: #3b82f6;
+    --color-primary-dark: #2563eb;
+    --color-text: #e0e0e0;
+    --color-muted: #a1a1b3;
+    --font-main: 'Roboto', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+}
+
+/* Base page styling */
+html, body {
+    height: 100%;
+    font-family: var(--font-main);
+    background: var(--color-bg);
+    color: var(--color-text);
+    overflow-x: hidden;
+}
+
+/* --------------------------------------------------------------
+   Layout helpers
+   -------------------------------------------------------------- */
+.container {
+    width: min(90%, 1200px);
+    margin-inline: auto;
+}
+
+/* --------------------------------------------------------------
+   Canvas background
+   -------------------------------------------------------------- */
+#bg-canvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* --------------------------------------------------------------
+   Navigation bar
+   -------------------------------------------------------------- */
+.navbar {
+    position: sticky;
+    top: 0;
+    background: rgba(14, 14, 29, 0.85);
+    backdrop-filter: blur(8px);
+    padding: 0.8rem 0;
+    z-index: 10;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+}
+.nav-links a {
+    margin-left: 1.5rem;
+    color: var(--color-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.nav-links a:hover {
+    color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------- */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.hero-inner h1 {
+    font-family: var(--font-mono);
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    border-right: .15em solid var(--color-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    animation: blink-caret .75s step-end infinite;
+}
+.tagline {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-muted);
+}
+.btn-primary {
+    display: inline-block;
+    padding: 0.8rem 1.6rem;
+    background: var(--color-primary);
+    color: #fff;
+    border-radius: 0.4rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+.btn-primary:hover {
+    background: var(--color-primary-dark);
+}
+
+/* Caret blink for typewriter */
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--color-primary); }
+}
+
+/* --------------------------------------------------------------
+   Sections
+   -------------------------------------------------------------- */
+.section {
+    padding: 4rem 0;
+}
+.section.alt {
+    background: rgba(255,255,255,0.02);
+}
+.section h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.section p,
+.section li {
+    line-height: 1.6;
+    color: var(--color-muted);
+}
+.grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    list-style: none;
+}
+
+/* --------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------- */
+.footer {
+    background: var(--color-bg);
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+}
+
+/* --------------------------------------------------------------
+   Responsive tweaks
+   -------------------------------------------------------------- */
+@media (max-width: 600px) {
+    .nav-links a {
+        margin-left: 0.8rem;
+        font-size: 0.9rem;
+    }
+    .hero-inner h1 {
+        font-size: 2.5rem;
+    }
+    .tagline {
+        font-size: 1rem;
+    }
+}
