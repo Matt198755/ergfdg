@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #1a1d23;
+    color: #fff;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #000;
+}
+
+nav .logo {
+    font-weight: bold;
+    color: #fff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+#hero {
+    background: #333;
+    padding: 5rem;
+    text-align: center;
+}
+
+#hero h1 {
+    font-size: 4rem;
+}
+
+#about {
+    background: #222;
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.chain-of-command {
+    margin-top: 1rem;
+}
+
+.role {
+    margin-bottom: 1rem;
+}
+
+.role h4 {
+    font-size: 1.2rem;
+}
+
+.role ul {
+    list-style: none;
+    padding: 0;
+}
+
+.role li {
+    padding: 0.2rem 0;
+}
+
+a.join-btn {
+    background: #007bff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.2rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a.join-btn:hover {
+    background: #0056b3;
+}
