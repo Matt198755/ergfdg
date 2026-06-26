@@ -2,21 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>vsrp ot – Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>vsrp ot</title>
+    <!-- Google Font (monospace for the typewriter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <ul>
+    <!-- Canvas for the particle background (same on every page) -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Sticky navigation -->
+    <nav class="navbar">
+        <div class="logo">vsrp ot</div>
+        <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
+            <li><a href="chain.html">Chain of Command</a></li>
         </ul>
-        <button onclick="window.location.href='https://discord.gg/voidstateroleplay'">Join Discord</button>
     </nav>
 
+    <!-- Hero / type‑writer section -->
     <section class="hero">
         <h1 id="typewriter"></h1>
+        <p class="subtitle">Welcome to the official site of Void State Roleplay.</p>
     </section>
 
     <script src="script.js"></script>

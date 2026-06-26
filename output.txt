@@ -1,0 +1,7 @@
+vsrp‑website/
+│
+├─ index.html
+├─ about.html
+├─ chain.html
+├─ style.css
+└─ script.js

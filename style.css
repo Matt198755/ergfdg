@@ -1,28 +1,179 @@
+/* ------------------------------------------------------------------ */
+/*  Global resets & colour palette                                      */
+/* ------------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Font – we use the same monospaced family everywhere */
+html {
+    font-family: 'Roboto Mono', monospace;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Layout – body, background & canvas                                   */
+/* ------------------------------------------------------------------ */
+html,
 body {
-    font-family: Arial, sans-serif;
-    background: #1e1e2f;
+    height: 100%;
+    overflow: hidden;               /* hide scrollbars caused by the canvas */
+    background: #1e1e2f;            /* dark background that you liked */
+    color: #e0e0e0;
+}
+
+/* Full‑screen canvas for the particle effect */
+#particle-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;                     /* behind everything else */
+}
+
+/* ------------------------------------------------------------------ */
+/*  Navigation bar (sticky)                                             */
+/* ------------------------------------------------------------------ */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(8px);
+    z-index: 2;
     color: #fff;
 }
 
-nav ul {
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.nav-links {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 1.5rem;
 }
 
-nav a {
-    color: #fff;
+.nav-links a {
     text-decoration: none;
+    color: #ccc;
+    transition: color 0.2s;
+}
+.nav-links a:hover {
+    color: #fff;
 }
 
+/* ------------------------------------------------------------------ */
+/*  Hero section (only on the home page)                               */
+/* ------------------------------------------------------------------ */
 .hero {
-    height: 100vh;
+    position: absolute;
+    inset: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-size: 4rem;
+    text-align: center;
+    z-index: 2;
+    padding-top: 60px;   /* account for the sticky nav */
 }
 
-.about {
-    padding: 20px;
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: .5rem;
+    border-right: .15em solid #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: blink .8s steps(5) infinite;
+}
+
+/* Simple blink for the cursor */
+@keyframes blink {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: #fff; }
+}
+
+/* Optional subtitle under the hero */
+.subtitle {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Content pages (About & Chain)                                        */
+/* ------------------------------------------------------------------ */
+.content-section {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 100px auto 0;   /* push down a bit after the nav */
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.35);
+    border-radius: 8px;
+    backdrop-filter: blur(6px);
+    color: #fff;
+}
+
+/* Heading styles */
+.content-section h2 {
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+}
+
+/* Sub‑headings inside the chain page */
+.role-group h3 {
+    margin-top: 1.4rem;
+    margin-bottom: .6rem;
+    color: #8cf;
+}
+
+/* Links inside text */
+.content-section a {
+    color: #68b;
+    text-decoration: underline;
+}
+.content-section a:hover {
+    color: #aef;
+}
+
+/* Feature list on About page */
+.feature-list {
+    list-style: disc inside;
+    margin: .8rem 0 1.2rem;
+    line-height: 1.6;
+}
+
+/* Discord button */
+.discord-btn {
+    display: inline-block;
+    padding: .6rem 1.2rem;
+    background: #5865F2;
+    color: #fff;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background .2s;
+}
+.discord-btn:hover {
+    background: #4752c4;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Responsive tweaks                                                    */
+/* ------------------------------------------------------------------ */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.8rem; }
+    .subtitle { font-size: 1rem; }
+    .content-section { margin: 80px 1rem 0; }
 }
