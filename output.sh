@@ -1,2 +1,2 @@
-# Python 3.x
+# Python 3
    python -m http.server 8000

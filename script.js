@@ -1,34 +1,35 @@
 /* --------------------------------------------------------------
-   1️⃣ Type‑writer effect – only runs on pages that have
-       an element with id="typewriter"
+   1️⃣ Type‑writer effect – runs only if an element
+       with ID "typewriter" exists (home page)
    -------------------------------------------------------------- */
-const typeTarget = document.getElementById('typewriter');
-if (typeTarget) {
+const typeWriterTarget = document.getElementById('typewriter');
+if (typeWriterTarget) {
     const txt = "vsrp ot";
-    const speed = 120;   // ms per character
+    const speed = 120;               // ms per character
     let i = 0;
+
     function typeWriter() {
         if (i < txt.length) {
-            typeTarget.textContent += txt.charAt(i);
+            typeWriterTarget.textContent += txt.charAt(i);
             i++;
             setTimeout(typeWriter, speed);
         } else {
-            // Remove the blinking cursor after the text finishes
-            typeTarget.style.borderRight = 'none';
+            // remove the cursor once typing is finished
+            typeWriterTarget.style.borderRight = 'none';
         }
     }
     typeWriter();
 }
 
 /* --------------------------------------------------------------
-   2️⃣ Simple particle background (canvas)
+   2️⃣ Particle background – draws tiny moving dots
    -------------------------------------------------------------- */
 const canvas = document.getElementById('particle-canvas');
 if (canvas) {
     const ctx = canvas.getContext('2d');
-    const particles = [];
+    let particles = [];
 
-    // Resize canvas to fill the window
+    // Resize canvas to full window size
     function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -36,7 +37,6 @@ if (canvas) {
     resize();
     window.addEventListener('resize', resize);
 
-    // Particle class
     class Particle {
         constructor() {
             this.reset();
@@ -52,8 +52,7 @@ if (canvas) {
         update() {
             this.x += this.vx;
             this.y += this.vy;
-
-            // Wrap around screen edges
+            // wrap around screen edges
             if (this.x > canvas.width) this.x = 0;
             if (this.x < 0) this.x = canvas.width;
             if (this.y > canvas.height) this.y = 0;
@@ -67,20 +66,20 @@ if (canvas) {
         }
     }
 
-    // Initialise particles
-    function init(count = 130) {
-        particles.length = 0;
-        for (let i = 0; i < count; i++) particles.push(new Particle());
+    function initParticles(count = 110) {
+        particles = [];
+        for (let i = 0; i < count; i++) {
+            particles.push(new Particle());
+        }
     }
-    init();
+    initParticles();
 
-    // Animation loop
     function animate() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        particles.forEach(p => {
+        for (const p of particles) {
             p.update();
             p.draw();
-        });
+        }
         requestAnimationFrame(animate);
     }
     animate();
